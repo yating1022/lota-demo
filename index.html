@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商品查询网站</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+
+    <header class="top-panel">
+      <h1>商品查询网站</h1>
+
+      <div class="filters" role="search">
+        <label>
+          关键字
+          <input id="keywordInput" type="text" placeholder="输入货号或名称" />
+        </label>
+
+        <label>
+          客户
+          <select id="customerSelect">
+            <option value="">全部客户</option>
+          </select>
+        </label>
+
+        <label>
+          产品类型
+          <select id="categorySelect">
+            <option value="">全部类型</option>
+          </select>
+        </label>
+
+        <button id="resetBtn" type="button">重置筛选</button>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <aside class="tree-panel" aria-label="客户和产品类型树">
+        <div class="panel-title">客户 -> 产品类型</div>
+        <nav id="treeNav" class="tree-nav"></nav>
+      </aside>
+
+      <section class="content-panel" aria-label="产品内容">
+        <div class="content-head">
+          <h2>产品列表</h2>
+          <div class="content-tools">
+            <span id="resultCount" class="result-count">加载中...</span>
+            <div class="view-switch" role="group" aria-label="列表和卡片切换">
+              <button id="viewListBtn" class="view-btn" type="button">列表视图</button>
+              <button id="viewCardBtn" class="view-btn" type="button">卡片视图</button>
+            </div>
+          </div>
+        </div>
+        <div id="productList" class="product-list view-list"></div>
+      </section>
+    </main>
+
+    <div id="imageModal" class="image-modal" hidden>
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <button id="closeModalBtn" class="close-btn" type="button" aria-label="关闭">&times;</button>
+        <img id="modalImage" class="modal-image" src="" alt="原图放大显示" />
+      </div>
+    </div>
+
+    <template id="productCardTemplate">
+      <article class="product-card">
+        <div class="product-media no-image">
+          <img class="product-image" alt="产品图片" loading="lazy" />
+          <div class="image-fallback">暂无图片</div>
+        </div>
+        <div class="card-main">
+          <h3 class="product-name"></h3>
+          <div class="product-meta"></div>
+          <p class="product-note"></p>
+        </div>
+        <div class="card-actions">
+          <a class="source-link" target="_blank" rel="noopener noreferrer">查看原链接</a>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
